@@ -9,18 +9,31 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
-interface BookCardProps {
-  id: number
-  title: string
-  author: string
-  coverUrl: string
-  categories: string[]
-  type: "Hardcover" | "Paperback" | "E-Book" | "Audiobook"
-  publishDate: Date
-  status: "Available" | "Borrowed" | "Reserved"
-}
+// interface BookCardProps {
+//   id: number
+//   title: string
+//   author: string
+//   coverUrl: string
+//   categories: string[]
+//   type: "Hardcover" | "Paperback" | "E-Book" | "Audiobook"
+//   publishDate: Date
+//   status: "Available" | "Borrowed" | "Reserved"
+// } 
+type BookType = "Hardcover" | "Paperback" | "E-Book" | "Audiobook";
+type BookStatus = "Available" | "Borrowed" | "Reserved";
 
-export function BookCard({ title, author, coverUrl, categories, type, publishDate, status }: BookCardProps) {
+interface BookCardProps {
+  id: number;
+  title: string;
+  author: string;
+  coverUrl: string;
+  categories: string[];
+  // type: BookType;
+
+  publishDate: Date;
+  status: BookStatus;
+}
+export function BookCard({ title, author, coverUrl, categories, publishDate, status }: BookCardProps) {
   const [isAdded, setIsAdded] = React.useState(false)
 
   const handleAddToList = () => {
@@ -71,7 +84,7 @@ export function BookCard({ title, author, coverUrl, categories, type, publishDat
           <div className="flex items-center justify-between text-xs text-gray-400">
             <div className="flex items-center gap-1">
               <BookOpen className="h-4 w-4" />
-              <span>{type}</span>
+              {/* <span>{type}</span> */}
             </div>
             <TooltipProvider>
               <Tooltip>

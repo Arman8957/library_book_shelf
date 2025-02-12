@@ -58,11 +58,12 @@ export default function Home() {
   const [isSignUpOpen, setIsSignUpOpen] = useState(false)
   const [isSignInOpen, setIsSignInOpen] = useState(false)
   const [isInviteOpen, setIsInviteOpen] = useState(false)
+ 
 
   return (
     <div className="min-h-screen bg-gray-900">
       <header className="p-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-white">Library Search</h1>
+        <h1 className="m-10 text-2xl font-bold text-white">Library Search</h1>
         <div className="flex items-center gap-4">
           <Button
             onClick={() => setIsInviteOpen(true)}
@@ -82,7 +83,8 @@ export default function Home() {
           <h2 className="text-2xl font-semibold text-white mb-6">Featured Books</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {featuredBooks.map((book) => (
-              <BookCard key={book.id} {...book} />
+              <BookCard   key={book.id} {...book}/>
+            
             ))}
           </div>
         </section>
