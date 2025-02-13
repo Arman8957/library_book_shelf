@@ -28,12 +28,12 @@ interface BookCardProps {
   author: string;
   coverUrl: string;
   categories: string[];
-  // type: BookType;
+  type: BookType;
 
   publishDate: Date;
   status: BookStatus;
 }
-export function BookCard({ title, author, coverUrl, categories, publishDate, status }: BookCardProps) {
+export function BookCard({ title, author, coverUrl, categories,type ,publishDate, status }: BookCardProps) {
   const [isAdded, setIsAdded] = React.useState(false)
 
   const handleAddToList = () => {

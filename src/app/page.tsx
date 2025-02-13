@@ -79,7 +79,7 @@ export default function Home() {
       <main className="p-8">
         <LibrarySearch />
 
-        <section className="mt-12">
+        {/* <section className="mt-12">
           <h2 className="text-2xl font-semibold text-white mb-6">Featured Books</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {featuredBooks.map((book) => (
@@ -87,7 +87,7 @@ export default function Home() {
             
             ))}
           </div>
-        </section>
+        </section> */}
 
         <CommunitySection />
       </main>

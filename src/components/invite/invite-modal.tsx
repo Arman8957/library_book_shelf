@@ -44,22 +44,22 @@ export function InviteModal({ isOpen, onClose }: InviteModalProps) {
   const [members, setMembers] = React.useState<TeamMember[]>([
     {
       id: "1",
-      name: "Sofia Davis",
-      email: "m@example.com",
+      name: "Arman",
+      email: "mdarmanya.h@gmail.com",
       role: "Owner",
       avatarUrl: "/placeholder.svg?height=40&width=40",
     },
     {
       id: "2",
-      name: "Jackson Lee",
-      email: "p@example.com",
+      name: "Hasan",
+      email: "hasan@gmail.com",
       role: "Member",
       avatarUrl: "/placeholder.svg?height=40&width=40",
     },
     {
       id: "3",
-      name: "Emily Chen",
-      email: "e@example.com",
+      name: "Safa",
+      email: "safa@blazedigital.com",
       role: "Developer",
       avatarUrl: "/placeholder.svg?height=40&width=40",
     },
