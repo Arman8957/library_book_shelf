@@ -1,9 +1,9 @@
 "use client"
 
 import React from "react"
-import { HeroSection } from "@/components/hero-section"
 import { CommunitySection } from "@/components/community-section"
 import { CampaignPage } from "@/components/campaign/campaign-page"
+import { PosterSection } from "@/components/marketing/poster-section"
 
 export default function Home() {
   const [showCampaign, setShowCampaign] = React.useState(false)
@@ -17,7 +17,7 @@ export default function Home() {
       {showCampaign && <CampaignPage onBack={() => setShowCampaign(false)} />}
       {!showCampaign && (
         <>
-          <HeroSection />
+          <PosterSection />
           <CommunitySection onStartCampaign={handleStartCampaign} />
         </>
       )}
