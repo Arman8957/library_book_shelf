@@ -1,91 +1,61 @@
 "use client"
 
-import { useState } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { ChevronRight, Play } from "lucide-react"
 
-const featuredPodcasts = [
-  {
-    id: 1,
-    title: "The Daily",
-    host: "The New York Times",
-    coverUrl: "/placeholder.svg?height=300&width=300&text=The+Daily",
-    description: "This is what the news should sound like. The biggest stories of our time.",
-    episodes: 1245,
-    category: "News",
-  },
-  {
-    id: 2,
-    title: "Hidden Brain",
-    host: "NPR",
-    coverUrl: "/placeholder.svg?height=300&width=300&text=Hidden+Brain",
-    description: "Exploring the unconscious patterns that drive human behavior.",
-    episodes: 387,
-    category: "Science",
-  },
-  {
-    id: 3,
-    title: "Stuff You Should Know",
-    host: "iHeartRadio",
-    coverUrl: "/placeholder.svg?height=300&width=300&text=SYSK",
-    description: "Josh and Chuck explore everything under the sun.",
-    episodes: 1500,
-    category: "Education",
-  },
-  {
-    id: 4,
-    title: "Radiolab",
-    host: "WNYC Studios",
-    coverUrl: "/placeholder.svg?height=300&width=300&text=Radiolab",
-    description: "Investigating a strange world.",
-    episodes: 450,
-    category: "Science",
-  },
+type Podcast = {
+  id: number
+  title: string
+  host: string
+  coverUrl: string
+}
+
+const demo: Podcast[] = [
+  { id: 1, title: "The Daily", host: "NY Times", coverUrl: "/placeholder.svg?height=200&width=200&text=Daily" },
+  { id: 2, title: "Hidden Brain", host: "NPR", coverUrl: "/placeholder.svg?height=200&width=200&text=Brain" },
+  { id: 3, title: "SYSK", host: "iHeart", coverUrl: "/placeholder.svg?height=200&width=200&text=SYSK" },
+  { id: 4, title: "Radiolab", host: "WNYC", coverUrl: "/placeholder.svg?height=200&width=200&text=Radiolab" },
 ]
 
-export function AudioPodcastSection({ onPodcastClick, onViewAllClick }) {
-  const [hoveredId, setHoveredId] = useState<number | null>(null)
+interface Props {
+  onPodcastClick: (p: Podcast) => void
+  onViewAllClick: () => void
+}
 
+export default function AudioPodcastSection({ onPodcastClick, onViewAllClick }: Props) {
   return (
-    <div className="max-w-6xl mx-auto py-12">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold">Audio Podcasts</h2>
-        <Button variant="ghost" onClick={onViewAllClick} className="flex items-center">
-          View All
-          <ChevronRight className="ml-1 h-4 w-4" />
-        </Button>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {featuredPodcasts.map((podcast) => (
-          <Card
-            key={podcast.id}
-            className="overflow-hidden transition-all duration-300 hover:shadow-lg"
-            onMouseEnter={() => setHoveredId(podcast.id)}
-            onMouseLeave={() => setHoveredId(null)}
-            onClick={() => onPodcastClick(podcast)}
-          >
-            <div className="relative aspect-square">
-              <img
-                src={podcast.coverUrl || "/placeholder.svg"}
-                alt={podcast.title}
-                className="w-full h-full object-cover"
+    <section className="py-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-semibold">Audio Podcasts</h2>
+          <Button variant="link" onClick={onViewAllClick}>
+            View All
+          </Button>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          {demo.map((p) => (
+            <button
+              key={p.id}
+              type="button"
+              onClick={() => onPodcastClick(p)}
+              className="text-left space-y-2 hover:opacity-90 focus:outline-none"
+            >
+              <Image
+                src={p.coverUrl || "/placeholder.svg"}
+                alt={p.title}
+                width={200}
+                height={200}
+                className="w-full aspect-square rounded-lg object-cover"
               />
-              {hoveredId === podcast.id && (
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                  <Button size="icon" variant="secondary" className="rounded-full h-12 w-12">
-                    <Play className="h-6 w-6" />
-                  </Button>
-                </div>
-              )}
-            </div>
-            <CardContent className="p-4">
-              <h3 className="font-semibold truncate">{podcast.title}</h3>
-              <p className="text-sm text-muted-foreground">{podcast.host}</p>
-            </CardContent>
-          </Card>
-        ))}
+              <div>
+                <div className="font-medium truncate">{p.title}</div>
+                <div className="text-sm text-muted-foreground truncate">{p.host}</div>
+              </div>
+            </button>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
